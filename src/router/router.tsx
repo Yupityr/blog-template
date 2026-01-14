@@ -7,6 +7,7 @@ import { Createpost } from "@/pages/Createpost";
 import Layout from "@/pages/Layout";
 import AuthProtectedRoute from "./AuthProtectedRoute";
 import Landingpage from "@/pages/Landingpage";
+import { SimpleEditor } from "@/components/tiptap-templates/simple/simple-editor";
 
 export const router = createBrowserRouter([
     {
@@ -42,6 +43,8 @@ export const router = createBrowserRouter([
         ]    
     },
     {path: "*", element: <div>404 Not Found</div>},
+    {path: "/test", element: <SimpleEditor />},
+
     
 
 ]);
