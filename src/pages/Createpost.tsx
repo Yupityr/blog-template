@@ -1,51 +1,86 @@
+// import { useDispatch, useSelector} from 'react-redux'
 import { SimpleEditor } from "@/components/tiptap-templates/simple/simple-editor"
 import { Editor } from "@tiptap/react"
 import { useState } from "react"
-import { supabase } from "@/services/supabaseClient"
+// import { supabase } from '@/services/supabaseClient'
+import { useAppDispatch } from '@/app/store'
+import { createPost } from '@/features/postsSlice'
 
+// export const Createpost = () => {
+//     const [editor, setEditor] = useState<Editor | null>(null);
+//     const [blog, setBlog] = useState({title: "", body: ""});
+    
+//     const createPost = async (e:any) => {
+//         e.preventDefault()
+
+//         const payload = {
+//             title: blog.title,
+//             body: editor?.getJSON(),
+//         }
+
+//         const {error} = await supabase.from("blogs").insert(payload)
+
+//         if (error) {
+//             console.error("Failed to create post", error)
+//             return
+//         }
+
+//     };
+
+    
+//     const check = () =>{
+//         const payload = {
+//             title: blog.title,
+//             body: editor?.getJSON(),
+//         }
+//         console.log(payload);
+        
+//     }
+    
+
+//     return (
+//         <>
+            
+//             <div >
+//                 <div className="flex justify-between my-2 mx-4">
+//                     <input className="text-3xl" type="text" placeholder="Insert Title" onChange={(e) => setBlog((prev) => ({...prev, title: e.target.value}))}/>
+//                     <button onClick={createPost}>
+//                         Post
+//                     </button>
+//                 </div>
+//                 <SimpleEditor onEditorReady={setEditor} />
+//             </div>
+//         </>
+//     );
+// }
 
 export const Createpost = () => {
-    const [editor, setEditor] = useState<Editor | null>(null);
-    const [blog, setBlog] = useState({title: "", body: ""});
-    
-    const createPost = async (e:any) => {
-        e.preventDefault()
+    const dispatch = useAppDispatch()
 
-        const payload = {
-            title: blog.title,
-            body: editor?.getJSON(),
-        }
+    const [title, setTitle] = useState('')
+    const [body,setBody] = useState<Editor | null>(null)
 
-        const {error} = await supabase.from("blogs").insert(payload)
-
-        if (error) {
-            console.error("Failed to create post", error)
-            return
-        }
-
-    };
-
-    
-    const check = () =>{
-        const payload = {
-            title: blog.title,
-            body: editor?.getJSON(),
-        }
-        console.log(payload);
-        
+    const handleSubmit = async () => {
+        await dispatch(
+            createPost({
+                title,body:body?.getJSON()
+            })
+        )
     }
-    
+
 
     return (
         <>
-            <input type="text" placeholder="Insert Title" onChange={(e) => setBlog((prev) => ({...prev, title: e.target.value}))}/>
+            
             <div >
-                <div className="flex justify-end">
-                    <button onClick={createPost}>
+                <div className="flex justify-between my-2 mx-4">
+                    {/* <input className="text-3xl" type="text" placeholder="Insert Title" onChange={(e) => setBlog((prev) => ({...prev, title: e.target.value}))}/> */}
+                    <input className="text-3xl" type="text" placeholder="Insert Title" onChange={(e) => setTitle(e.target.value)}/>
+                    <button onClick={handleSubmit}>
                         Post
                     </button>
                 </div>
-                <SimpleEditor onEditorReady={setEditor} />
+                <SimpleEditor onEditorReady={setBody} />
             </div>
         </>
     );
