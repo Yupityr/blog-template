@@ -1,11 +1,23 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { supabase } from "@/services/supabaseClient";
 import { useSession } from "@/context/AuthContext";
 import Blogcard from "./components/Blogcard";
 
 
 const Homepage = () => {
-  const { session } = useSession();
+  const { session} = useSession();
+  const navigate = useNavigate();
+  
+  const signOutUser = async (e:any) => {
+    e.preventDefault();
+
+    try{
+      await supabase.auth.signOut();
+      navigate("/")
+    } catch (error){
+      return 
+    }
+  }
 
   return (
     <main className="flex flex-col items-center justify-center  py-2">
@@ -19,7 +31,7 @@ const Homepage = () => {
         </p>
         <div className="flex flex-row justify-center py-5">
           {session ? (
-            <button className="flex mx-2 items-center" onClick={() => supabase.auth.signOut()}>Sign Out</button>
+            <button className="flex mx-2 items-center" onClick={signOutUser}>Sign Out</button>
           ) : (
             <Link className="flex mx-2 items-center" to="/signin">Sign In</Link>
           )}
