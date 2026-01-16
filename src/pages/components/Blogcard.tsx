@@ -19,7 +19,7 @@ const Blogcard = () => {
 
     return(
         <> 
-            <div className='min-w-md'>
+            <div className=''>
                 {blogs.posts.map(blog => (
                     <div className='flex flex-row bg-white border border-gray-200 rounded-lg p-6 shadow-sm my-5' key={blog.id}>
                         <div className='flex flex-row'>
