@@ -19,9 +19,9 @@ const Blogcard = () => {
 
     return(
         <> 
-            <div>
+            <div className='min-w-md'>
                 {blogs.posts.map(blog => (
-                    <div className='flex flex-row bg-white border border-gray-200 rounded-lg p-6 shadow-sm' key={blog.id}>
+                    <div className='flex flex-row bg-white border border-gray-200 rounded-lg p-6 shadow-sm my-5' key={blog.id}>
                         <div className='flex flex-row'>
                             <Link className='mx-2' to={`/post/${blog.post_id}`}>
                                 <h3>
@@ -30,9 +30,6 @@ const Blogcard = () => {
                             </Link>
                             
                         </div>
-                        {/* <h3>
-                            {blog.title}
-                        </h3> */}
                     </div>
                 ))}
                 <div className='flex flex-row justify-center my-4'>

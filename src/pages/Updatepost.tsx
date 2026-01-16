@@ -25,24 +25,6 @@ const Updatepost = () => {
         dispatch(fetchPosts())
     },[dispatch])    
 
-
-
-    // useEffect(() => {
-    //     dispatch(updatePost({
-    //         id:params.postId,
-    //         title:title,
-    //         content:body
-    //     }
-    //     ))
-    // })
-
-    // useEffect(() => {
-    //     if (blogs){
-    //         setBody(blogs.body)
-    //         setTitle(blogs.title)
-    //     }
-    // },[blogs])
-
     const saveEdit = () =>{
         
         return dispatch(updatePost({
@@ -55,13 +37,15 @@ const Updatepost = () => {
 
     return (
         <>
-        <button onClick={saveEdit}>
-            Save
-        </button>
-        <article>
-            <input id="title" value={title} className="text-3xl" type="text" onChange={(e) => setTitle(e.target.value)}/>
-            <Editonlyeditor onEditorReady={setBody} postContent={blogs?.body}/>
-        </article>
+        <div className="flex justify-end px-4">
+            <button onClick={saveEdit}>
+                Save
+            </button>
+        </div>
+            <article>
+                <input id="title" value={title} className="text-3xl" type="text" onChange={(e) => setTitle(e.target.value)}/>
+                <Editonlyeditor onEditorReady={setBody} postContent={blogs?.body}/>
+            </article>
         </>
     );
 };

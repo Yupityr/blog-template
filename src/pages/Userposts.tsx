@@ -4,6 +4,7 @@ import { useAppSelector,useAppDispatch } from "@/app/store";
 import { useEffect } from "react";
 import { deletePost, fetchPosts, setPage } from "@/features/postsSlice";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -14,6 +15,8 @@ const Userposts = () => {
 
     const blogs = useAppSelector((state) => state.posts.posts.filter(p => p.user_id === params.userId))
     
+    const navigate = useNavigate()
+
     const { currentPage } = useAppSelector(
     state => state.posts.pagination
     )
@@ -27,36 +30,30 @@ const Userposts = () => {
 
 
 
-    useEffect(() => {
-        dispatch(fetchPosts())
-    },[dispatch])
-
     
 
     return (
         <>
-            <div>
+            <div className="flex flex-col">
                 {blogs.map(blog => (
                     <div className='flex flex-row bg-white border border-gray-200 rounded-lg p-6 shadow-sm' key={blog.id}>
-                        <div className='flex flex-row'>
-                            <Link className='mx-2' to={`/post/${blog.post_id}`}>
-                                <h3>
-                                    {blog.title}
-                                </h3>
-                            </Link>
-                            
-                            <Link className='mx-2' to={`/post/edit/${blog.post_id}`}>
-                                <h3>
+                        <div className='flex flex-row justify-between'>
+                            <div className="flex items-center">
+                                <Link className='' to={`/post/${blog.post_id}`}>
+                                    <h3>
+                                        {blog.title}
+                                    </h3>
+                                </Link>
+                            </div>
+                            <div className="flex">
+                                <button onClick={() =>navigate(`/post/edit/${blog.post_id}`)}>
                                     Edit
-                                </h3>
-                            </Link>
-                            <button onClick={() => dispatch(deletePost(blog.post_id))}>
-                                deleyt
-                            </button>
+                                </button>
+                                <button onClick={() => dispatch(deletePost(blog.post_id))}>
+                                    Delete
+                                </button>
+                            </div>
                         </div>
-                        {/* <h3>
-                            {blog.title}
-                        </h3> */}
                     </div>
                 ))}
                 <div className='flex flex-row justify-center my-4'>

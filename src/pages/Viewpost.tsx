@@ -21,8 +21,11 @@ const Viewpost = () => {
     return (
         <>
         <article>
-            {blogs?.title}
-            {blogs?.id}
+            <div>
+                <p className="text-center text-3xl mb-4 pb-4">
+                    {blogs?.title}
+                </p>
+            </div>
             <Readonlyeditor postContent={blogs?.body}/>
         </article>
         </>

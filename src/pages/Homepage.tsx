@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { supabase } from "@/services/supabaseClient";
 import { useSession } from "@/context/AuthContext";
 import Blogcard from "./components/Blogcard";
@@ -6,30 +6,27 @@ import Blogcard from "./components/Blogcard";
 
 const Homepage = () => {
   const { session } = useSession();
-  const navigate = useNavigate();
-
-  const check = () => {
-
-    console.log(session?.user);
-    navigate(`/post/user/${session?.user.id}`)
-  }
 
   return (
     <main className="flex flex-col items-center justify-center  py-2">
       <section className="main-container">
-        <h1 className="header-text">Welcome to Hermod</h1>
-        <p>Current User : {session?.user.email || "None"}</p>
-        {session ? (
-          <button onClick={() => supabase.auth.signOut()}>Sign Out</button>
-        ) : (
-          <Link to="/signin">Sign In</Link>
-        )}
-        <Link to="/create-blog">Create a Blog</Link>
-        <div id="divider"></div>
+        <h1 className="header-text my-2">Welcome to Hermod</h1>
+        <p>
+          Current User : 
+          <Link to={`/post/user/${session?.user.id}`}>
+            {session?.user.email || "None"}
+          </Link>
+        </p>
+        <div className="flex flex-row justify-center py-5">
+          {session ? (
+            <button className="flex mx-2 items-center" onClick={() => supabase.auth.signOut()}>Sign Out</button>
+          ) : (
+            <Link className="flex mx-2 items-center" to="/signin">Sign In</Link>
+          )}
+          <Link className="flex mx-2 items-center" to="/create-blog">Create a Blog</Link>
+          <div id="divider"></div>
+        </div>
       </section>
-      <button onClick={check}>
-        test
-      </button>
       <Blogcard />
     </main>
   );
