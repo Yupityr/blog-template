@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { supabase } from "@/services/supabaseClient";
 import { useSession } from "@/context/AuthContext";
 import Blogcard from "./components/Blogcard";
@@ -6,11 +6,18 @@ import Blogcard from "./components/Blogcard";
 
 const Homepage = () => {
   const { session } = useSession();
+  const navigate = useNavigate();
+
+  const check = () => {
+
+    console.log(session?.user);
+    navigate(`/post/user/${session?.user.id}`)
+  }
 
   return (
     <main className="flex flex-col items-center justify-center  py-2">
       <section className="main-container">
-        <h1 className="header-text">Welcome to Ymir Blog</h1>
+        <h1 className="header-text">Welcome to Hermod</h1>
         <p>Current User : {session?.user.email || "None"}</p>
         {session ? (
           <button onClick={() => supabase.auth.signOut()}>Sign Out</button>
@@ -20,6 +27,9 @@ const Homepage = () => {
         <Link to="/create-blog">Create a Blog</Link>
         <div id="divider"></div>
       </section>
+      <button onClick={check}>
+        test
+      </button>
       <Blogcard />
     </main>
   );

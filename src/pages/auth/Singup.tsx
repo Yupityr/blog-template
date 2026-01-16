@@ -58,7 +58,7 @@ const SignUpPage = () => {
         </div>
         <button disabled={isDisabled} type="submit" className="w-full mt-4">Sign Up</button>
         <p className="text-center pt-4">
-          <Link to="/">Already have an account?</Link>
+          <Link to="/signin">Already have an account?</Link>
         </p>
         {status && <p>{status}</p>}
       </form>

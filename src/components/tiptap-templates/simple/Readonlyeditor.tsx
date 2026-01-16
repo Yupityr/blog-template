@@ -1,6 +1,6 @@
 "use client"
 
-import { EditorContent, useEditor } from "@tiptap/react"
+import { EditorContent, useEditor,Editor } from "@tiptap/react"
 
 // --- Tiptap Core Extensions ---
 import { StarterKit } from "@tiptap/starter-kit"
@@ -26,9 +26,11 @@ import "@/components/tiptap-node/paragraph-node/paragraph-node.scss"
 
 import "@/components/tiptap-templates/simple/simple-editor.scss"
 
+interface SimpleEditorProps {
+  postContent?: (editor: Editor) => void
+}
 
-
-export default function Readonlyeditor({postContent}) {
+export default function Readonlyeditor({postContent}:SimpleEditorProps) {
   const editor = useEditor({
     immediatelyRender: false,
     editable: false,

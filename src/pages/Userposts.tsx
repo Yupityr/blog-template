@@ -1,11 +1,19 @@
-import { useAppDispatch,useAppSelector } from '@/app/store'
-import { fetchPosts, setPage } from '@/features/postsSlice'
-import { useEffect } from "react";
-import { Link } from 'react-router-dom';
 
-const Blogcard = () => {
-    const dispatch = useAppDispatch();
-    const blogs = useAppSelector((state) => state.posts)
+import { useParams } from "react-router-dom";
+import { useAppSelector,useAppDispatch } from "@/app/store";
+import { useEffect } from "react";
+import { deletePost, fetchPosts, setPage } from "@/features/postsSlice";
+import { Link } from "react-router-dom";
+
+
+
+const Userposts = () => {
+    
+    const dispatch = useAppDispatch()
+    const params = useParams()
+
+    const blogs = useAppSelector((state) => state.posts.posts.filter(p => p.user_id === params.userId))
+    
     const { currentPage } = useAppSelector(
     state => state.posts.pagination
     )
@@ -17,10 +25,18 @@ const Blogcard = () => {
         dispatch(fetchPosts())
     },[currentPage, dispatch, totalPages])
 
-    return(
-        <> 
+
+
+    useEffect(() => {
+        dispatch(fetchPosts())
+    },[dispatch])
+
+    
+
+    return (
+        <>
             <div>
-                {blogs.posts.map(blog => (
+                {blogs.map(blog => (
                     <div className='flex flex-row bg-white border border-gray-200 rounded-lg p-6 shadow-sm' key={blog.id}>
                         <div className='flex flex-row'>
                             <Link className='mx-2' to={`/post/${blog.post_id}`}>
@@ -29,6 +45,14 @@ const Blogcard = () => {
                                 </h3>
                             </Link>
                             
+                            <Link className='mx-2' to={`/post/edit/${blog.post_id}`}>
+                                <h3>
+                                    Edit
+                                </h3>
+                            </Link>
+                            <button onClick={() => dispatch(deletePost(blog.post_id))}>
+                                deleyt
+                            </button>
                         </div>
                         {/* <h3>
                             {blog.title}
@@ -40,7 +64,7 @@ const Blogcard = () => {
                         Prev
                     </button>
                     <p className='content-center mx-4'>{currentPage} of {totalPages}</p>
-                    <button disabled={currentPage === totalPages} onClick={() => dispatch(setPage(currentPage + 1))}>
+                    <button onClick={() => dispatch(setPage(currentPage + 1))}>
                          Next
                     </button>
                 </div>
@@ -49,4 +73,4 @@ const Blogcard = () => {
     );
 };
 
-export default Blogcard;
+export default Userposts

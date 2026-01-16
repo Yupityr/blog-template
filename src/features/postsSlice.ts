@@ -1,4 +1,4 @@
-import {createSlice, createAsyncThunk, type PayloadAction, current} from "@reduxjs/toolkit"
+import {createSlice, createAsyncThunk, type PayloadAction} from "@reduxjs/toolkit"
 import { supabase } from "@/services/supabaseClient";
 import type { RootState } from "@/app/store";
 // import { Editor } from "@tiptap/react"
@@ -8,6 +8,7 @@ export interface Post{
     title:string;
     body:any;
     post_id:string
+    user_id:string
 }
 
 export interface paginationType{
@@ -68,11 +69,14 @@ const postSlice = createSlice({
             }
             console.log("hello");
         })
+        .addCase(deletePost.fulfilled, (state,action) => {
+            state.posts= state.posts.filter(post => post.post_id !== action.payload)
+        })
     }
 });
 
 
-export const fetchPosts = createAsyncThunk<{posts:Post[]; pagination:paginationType,total:number},void, {state:RootState}>('posts/fetchPosts',
+export const fetchPosts = createAsyncThunk<{posts:Post[]; pagination:paginationType,total:number,user_id:string},void, {state:RootState}>('posts/fetchPosts',
     async (_, {getState}) => {
         try {
             const { currentPage, postPerPage} = getState().posts.pagination;
@@ -119,9 +123,21 @@ export const updatePost = createAsyncThunk<Post,{ post_id: string | undefined; t
   }
 )
 
-// edit thunk
+export const deletePost = createAsyncThunk<string, string>('posts/deletePost',
+    async(post_id, {rejectWithValue}) => {
+        const {error} = await supabase
+        .from('blogs')
+        .delete()
+        .eq('post_id', post_id)
 
-// delete thunk
+        if (error) {
+            return rejectWithValue(error)
+        }
+
+        return post_id
+    }
+)
+
 
 
 

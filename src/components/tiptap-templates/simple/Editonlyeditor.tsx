@@ -185,7 +185,7 @@ const MobileToolbarContent = ({
 
 interface SimpleEditorProps {
   onEditorReady?: (editor: Editor) => void
-  postContent:any
+  postContent:(editor: Editor) => void
 }
 
 export  function Editonlyeditor({ onEditorReady, postContent}: SimpleEditorProps) {

@@ -9,6 +9,7 @@ import AuthProtectedRoute from "./AuthProtectedRoute";
 import Landingpage from "@/pages/Landingpage";
 import Viewpost from "@/pages/Viewpost";
 import Updatepost from "@/pages/Updatepost";
+import Userposts from "@/pages/Userposts";
 
 export const router = createBrowserRouter([
     {
@@ -33,6 +34,10 @@ export const router = createBrowserRouter([
                     {
                         path: "/create-blog", 
                         element: <Createpost/>
+                    },
+                    {
+                        path: "/post/user/:userId", 
+                        element: <Userposts/>
                     },
                     {
                         path: "/post/:postId", 
