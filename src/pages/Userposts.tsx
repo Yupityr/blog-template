@@ -40,15 +40,14 @@ const Userposts = () => {
 
     return (
         <>
-            <div className="flex flex-col min-h-[75vh] px-5">
-                {loading && <p>Loading...</p> }
-                {error && <p className="text-red-500">{error + "Redirecting back to homepage"}</p>}
+            <div className="flex flex-col min-h-[75vh] max-w-lg mx-auto">
                 <div className="text-center my-4 font-bold">
                     <h1>Your Posts</h1>
                 </div>
+                {loading && <p className="text-center">Loading...</p> }
                 {posts.length === 0 && !loading && !error && <p className="text-center">No posts found.</p>}
                 {!loading && !error && posts.map(blog => (
-                    <div className='flex flex-row bg-white border my-4 border-gray-200 rounded-lg p-6 shadow-sm' key={blog.id}>
+                    <div className='flex flex-row border my-4 border-gray-200 rounded-lg p-6 shadow-sm mx-4' key={blog.id}>
                         <div className='flex flex-row justify-between w-full'>
                             <div className="flex items-center">
                                 <Link className='' to={`/post/${blog.post_id}`}>

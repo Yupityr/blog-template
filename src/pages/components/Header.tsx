@@ -6,7 +6,7 @@ const Header = () => {
       <div className=" flex flex-row content-center">
         
         <p className="mx-2 my-auto text-xl">
-            <Link to={'/'} className="!text-black"> Hermod</Link>
+            <Link to={'/'} className="temp-logo"> Hermod</Link>
         </p>
         {/* <form className="mx-2 my-auto" action="">
           <div className="relative flex items-center">
