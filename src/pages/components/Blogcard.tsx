@@ -19,7 +19,7 @@ const Blogcard = () => {
 
     return(
         <> 
-            <div className=''>
+            <div className='flex flex-col w-full max-w-lg px-5 min-h-[60vh] mx-auto'>
                 {blogs.posts?.map(blog => (
                     <div className='flex flex-row bg-white border border-gray-200 rounded-lg p-6 shadow-sm my-5' key={blog.post_id}>
                         <div className='flex flex-row'>
@@ -32,7 +32,7 @@ const Blogcard = () => {
                         </div>
                     </div>
                 ))}
-                <div className='flex flex-row justify-center my-4'>
+                <div className='flex flex-row justify-center my-4 mt-auto'>
                     <button disabled={currentPage === 1} onClick={() => dispatch(setPage(currentPage - 1))}>
                         Prev
                     </button>

@@ -24,6 +24,13 @@ const Userposts = () => {
     )
 
     useEffect(() => {
+        if (error) {
+            const timer = setTimeout(() => navigate('/'), 1500);
+            return () => clearTimeout(timer);
+        }
+    }, [error, navigate]);
+
+    useEffect(() => {
         const userId = params.userId;
         if (userId){
             dispatch(fetchPostsByUserId(userId))
@@ -33,12 +40,16 @@ const Userposts = () => {
 
     return (
         <>
-            <div className="flex flex-col">
+            <div className="flex flex-col min-h-[75vh] px-5">
                 {loading && <p>Loading...</p> }
-                {error && <p className="text-red-500">{error}</p>}
+                {error && <p className="text-red-500">{error + "Redirecting back to homepage"}</p>}
+                <div className="text-center my-4 font-bold">
+                    <h1>Your Posts</h1>
+                </div>
+                {posts.length === 0 && !loading && !error && <p className="text-center">No posts found.</p>}
                 {!loading && !error && posts.map(blog => (
-                    <div className='flex flex-row bg-white border border-gray-200 rounded-lg p-6 shadow-sm' key={blog.id}>
-                        <div className='flex flex-row justify-between'>
+                    <div className='flex flex-row bg-white border my-4 border-gray-200 rounded-lg p-6 shadow-sm' key={blog.id}>
+                        <div className='flex flex-row justify-between w-full'>
                             <div className="flex items-center">
                                 <Link className='' to={`/post/${blog.post_id}`}>
                                     <h3>
@@ -46,7 +57,7 @@ const Userposts = () => {
                                     </h3>
                                 </Link>
                             </div>
-                            <div className="flex">
+                            <div className="flex items-center space-x-4">
                                 <button onClick={() =>navigate(`/post/edit/${blog.post_id}`)}>
                                     Edit
                                 </button>
@@ -57,7 +68,7 @@ const Userposts = () => {
                         </div>
                     </div>
                 ))}
-                <div className='flex flex-row justify-center my-4'>
+                <div className='flex flex-row justify-center my-4 mt-auto'>
                     <button disabled={currentPage === 1} onClick={() => dispatch(setPage(currentPage - 1))}>
                         Prev
                     </button>
