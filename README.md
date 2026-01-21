@@ -1,73 +1,73 @@
-# React + TypeScript + Vite
+# Hermod
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Hermod is a modern blog web application built with React + TypeScript. It features a rich text editor, authentication, and state management, making it easy to create, manage, and read blog posts. This project can also serve as a starter template for your own blog applications.
 
-Currently, two official plugins are available:
+## Live Demo
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+[@Hermod on Netlify]((hermod.netlify.app))
 
-## React Compiler
+## Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- React + TypeScript: Strongly typed components and hooks for scalable front-end development.
 
-## Expanding the ESLint configuration
+- Redux: Centralized state management for consistent application state.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- Context + Supabase: User authentication and session management.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- Tiptap: A rich text editor for writing and editing blog content.
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+- Netlify Hosting: Deploy your blog with ease.
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+- Environment-based Configuration: Easily set up your project by following the .env.example file.
+
+## Getting Started
+### Prerequisites
+
+Make sure you have the following installed on your system:
+
+- Node.js
+ (v18+ recommended)
+
+npm
+ or yarn
+
+## Installation
+
+1. Clone the repository
+
+```bash
+git clone https://github.com/your-username/hermod.git
+cd hermod
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+2. Install dependencies
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
+# or
+yarn install
 ```
+
+3. Set up environment variables
+Copy .env.example to .env and fill in your Supabase keys and other configuration:
+```bash
+cp .env.example .env
+```
+
+## Deploy
+
+The app is ready to deploy to Netlify or any other static hosting platform. Ensure your environment variables are set up in the hosting service.
+
+## Technologies Used
+
+- React + TypeScript – Frontend library and typing
+
+- Redux – State management
+
+- Context API + Supabase – Authentication and session handling
+
+- Tiptap – Rich text editor
+
+- Vite – Fast development and build tooling
+
+- Netlify – Hosting
