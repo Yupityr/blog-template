@@ -1,22 +1,50 @@
 import { Link } from 'react-router-dom';
-const Blogs = ({Blogs}) => {
+import type { PostsState } from '@/features/postsSlice';
+import { useNavigate } from 'react-router-dom';
+import { deletePost } from "@/features/postsSlice";
+type BlogsProps = Pick<PostsState, 'posts' | 'loading' | 'error'>;
+import { useAppDispatch } from "@/app/store";
+import { useParams } from "react-router-dom";
 
-    const blogs = Blogs;
+const Blogs = ({posts, loading, error}: BlogsProps) => {
+
+    const navigate = useNavigate();
+    const dispatch = useAppDispatch();
+    
+    const params = useParams()
 
     return (
-        <div className='flex flex-col w-full max-w-lg px-5 min-h-[60vh] mx-auto'>
-            {blogs.posts?.map(blog => (
-                <div className='flex flex-row border border-gray-200 rounded-lg p-6 shadow-sm my-5' key={blog.post_id}>
-                    <div className='flex flex-row'>
-                        <Link className='mx-2' to={`/post/${blog.post_id}`}>
-                            <h3>
-                                {blog.title}
-                            </h3>
-                        </Link>
+        <>
+            {loading && <p className="text-center">Loading...</p> }
+            {posts.length === 0 && !loading && !error && <p className="text-center">No posts found.</p>}
+            {error && <div className="text-center text-red-500"> <p>Eror Occurred</p> <p>Redirecting back to homepage</p></div>}
+            {!loading && !error && 
+            <div className='flex flex-col w-full max-w-lg px-5 min-h-[60vh] mx-auto'>
+                {posts?.map(blog => (
+                    <div className='flex flex-row border border-gray-200 rounded-lg p-6 shadow-sm my-5' key={blog.post_id}>
+                        <div className='flex flex-row justify-between w-full'>
+                            <div className="flex items-center">
+                                <Link className='' to={`/post/${blog.post_id}`}>
+                                    <h3>
+                                        {blog.title}
+                                    </h3>
+                                </Link>
+                            </div>
+                        </div>
+                        {params.userId === blog.user_id && 
+                        <div className="flex items-center space-x-4">
+                            <button onClick={() =>navigate(`/post/edit/${blog.post_id}`)}>
+                                Edit
+                            </button>
+                            <button onClick={() => dispatch(deletePost(blog.post_id))}>
+                                Delete
+                            </button>
+                        </div>}
                     </div>
-                </div>
-            ))}
-        </div>
+                    
+                ))}
+            </div>}
+        </>
     );
 };
 

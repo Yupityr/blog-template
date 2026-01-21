@@ -6,7 +6,7 @@ import Blogs from './Blogs';
 
 const Blogcard = () => {
     const dispatch = useAppDispatch();
-    const blogs = useAppSelector((state) => state.posts)
+    const {posts, loading, error} = useAppSelector((state) => state.posts)
     const { currentPage } = useAppSelector(
     state => state.posts.pagination
     )
@@ -43,8 +43,9 @@ const Blogcard = () => {
                     </button>
                 </div>
             </div> */}
+            
             <div className='flex flex-col w-full max-w-lg px-5 min-h-[60vh] mx-auto'>
-                <Blogs Blogs={blogs} />
+                <Blogs posts={posts} loading={loading} error={error} />
                 <div className='flex flex-row justify-center my-4 mt-auto'>
                     <button disabled={currentPage === 1} onClick={() => dispatch(setPage(currentPage - 1))}>
                         Prev

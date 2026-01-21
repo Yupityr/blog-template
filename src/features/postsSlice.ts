@@ -25,7 +25,7 @@ const initialPaginationState = {
     totalItems:0
 }
 
-interface PostsState{
+export interface PostsState{
     posts:Post[];
     total:number;
     currentPost: Post| null;
