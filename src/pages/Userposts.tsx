@@ -12,7 +12,7 @@ const Userposts = () => {
     
     const dispatch = useAppDispatch()
     const params = useParams()
-    const {posts, loading, error} = useAppSelector((state) => state.posts)
+    const {userPosts, loading, error} = useAppSelector((state) => state.posts)
     
     const navigate = useNavigate()
 
@@ -44,7 +44,7 @@ const Userposts = () => {
                 <div className="text-center my-4 font-bold">
                     <h1>Your Posts</h1>
                 </div>
-                <Blogs posts={posts} loading={loading} error={error} />
+                <Blogs posts={userPosts} loading={loading} error={error} />
                 <div className='flex flex-row justify-center my-4 mt-auto'>
                     <button disabled={currentPage === 1} onClick={() => dispatch(setPage(currentPage - 1))}>
                         Prev

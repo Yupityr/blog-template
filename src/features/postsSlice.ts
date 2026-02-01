@@ -27,6 +27,7 @@ const initialPaginationState = {
 
 export interface PostsState{
     posts:Post[];
+    userPosts:Post[];
     total:number;
     currentPost: Post| null;
     pagination:paginationType;
@@ -36,6 +37,7 @@ export interface PostsState{
 
 const initialState:PostsState = {
     posts:[],
+    userPosts:[],
     total:0,
     currentPost:null,
     pagination:initialPaginationState,
@@ -78,7 +80,7 @@ const postSlice = createSlice({
         })
         .addCase(fetchPostsByUserId.fulfilled, (state,action) => {
             state.loading = false;
-            state.posts = action.payload.posts ?? [];
+            state.userPosts = action.payload.userPosts ?? [];
             state.pagination.totalItems = action.payload.total
             state.pagination.totalPages = Math.ceil(action.payload.total / state.pagination.postPerPage)
         })
@@ -128,7 +130,7 @@ export const fetchPosts = createAsyncThunk<{posts:Post[]; pagination:paginationT
     }
 )
 
-export const fetchPostsByUserId = createAsyncThunk<{posts:Post[]; pagination:paginationType,total:number,user_id:string},string , {state:RootState,rejectValue: string}>('posts/fetchPostsByUserId',
+export const fetchPostsByUserId = createAsyncThunk<{userPosts:Post[]; pagination:paginationType,total:number,user_id:string},string , {state:RootState,rejectValue: string}>('posts/fetchPostsByUserId',
     async (userId, {getState, rejectWithValue}) => {
         const { currentPage, postPerPage} = getState().posts.pagination;
 
@@ -146,7 +148,7 @@ export const fetchPostsByUserId = createAsyncThunk<{posts:Post[]; pagination:pag
         }
 
         return {
-        posts: data,
+        userPosts: data,
         pagination: getState().posts.pagination,
         total: count ?? 0,
         user_id: userId ?? ''
