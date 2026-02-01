@@ -24,7 +24,7 @@ const Blogs = ({posts, loading, error}: BlogsProps) => {
                     <div className='flex flex-row border border-gray-200 rounded-lg p-6 shadow-sm my-5' key={blog.post_id}>
                         <div className='flex flex-row justify-between w-full'>
                             <div className="flex items-center">
-                                <Link className='' to={`/post/${blog.post_id}`}>
+                                <Link className='nav-link hover:text-blue-500' to={`/post/${blog.post_id}`}>
                                     <h3>
                                         {blog.title}
                                     </h3>

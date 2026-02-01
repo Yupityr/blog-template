@@ -40,13 +40,14 @@ const Updatepost = () => {
 
     return (
         <>
-        <div className="flex justify-end px-4">
+        <div className="flex justify-between my-2 mx-4 ">
+            <input id="title" value={title} className="text-3xl" type="text" onChange={(e) => setTitle(e.target.value)}/>
             <button onClick={saveEdit}>
                 Save
             </button>
         </div>
             <article>
-                <input id="title" value={title} className="text-3xl" type="text" onChange={(e) => setTitle(e.target.value)}/>
+                
                 <Editonlyeditor onEditorReady={setBody} postContent={blogs?.body}/>
             </article>
         </>

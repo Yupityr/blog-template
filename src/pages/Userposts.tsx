@@ -45,7 +45,7 @@ const Userposts = () => {
                     <h1>Your Posts</h1>
                 </div>
                 <Blogs posts={userPosts} loading={loading} error={error} />
-                <div className='flex flex-row justify-center my-4 mt-auto'>
+                {userPosts.length > 0 && <div className='flex flex-row justify-center my-4 mt-auto'>
                     <button disabled={currentPage === 1} onClick={() => dispatch(setPage(currentPage - 1))}>
                         Prev
                     </button>
@@ -53,7 +53,7 @@ const Userposts = () => {
                     <button disabled={currentPage === totalPages} onClick={() => dispatch(setPage(currentPage + 1))}>
                          Next
                     </button>
-                </div>
+                </div>}
             </div>
         </>
     );

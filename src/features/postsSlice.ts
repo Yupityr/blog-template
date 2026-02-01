@@ -99,8 +99,10 @@ const postSlice = createSlice({
             }
             console.log("hello");
         })
+        // deleting a post
         .addCase(deletePost.fulfilled, (state,action) => {
             state.posts= state.posts.filter(post => post.post_id !== action.payload)
+            state.userPosts= state.userPosts.filter(post => post.post_id !== action.payload)
         })
     }
 });
