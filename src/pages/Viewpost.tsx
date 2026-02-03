@@ -4,7 +4,7 @@ import Readonlyeditor from "@/components/tiptap-templates/simple/Readonlyeditor"
 import { useParams } from "react-router-dom";
 import { useAppSelector,useAppDispatch } from "@/app/store";
 import { useEffect } from "react";
-import { fetchPosts } from "@/features/postsSlice";
+import { fetchPosts } from "@/features/posts/postsSlice";
 
 const Viewpost = () => {
     const dispatch = useAppDispatch()

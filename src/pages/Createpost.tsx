@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom"
 
 // imports for accessing store
 import { useAppDispatch } from '@/app/store'
-import { createPost } from '@/features/postsSlice'
+import { createPost } from '@/features/posts/postsSlice'
 
 
 const Createpost = () => {

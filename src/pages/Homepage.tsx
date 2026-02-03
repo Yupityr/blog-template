@@ -35,8 +35,6 @@ const Homepage = () => {
           ) : (
             <Link className="flex mx-2 items-center" to="/signin">Sign In</Link>
           )}
-          <Link className="flex mx-2 items-center" to="/create-blog">Create a Blog</Link>
-          <div id="divider"></div>
         </div>
       </section>
       <Blogcard />

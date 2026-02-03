@@ -15,3 +15,5 @@ const Privateroute = ({ children }: Props) => {
 };
 
 export default Privateroute;
+
+// redundant component since Authprotectedroute is already handling private routing

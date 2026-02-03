@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
-import type { PostsState } from '@/features/postsSlice';
+import type { PostsState } from '@/features/posts/postsSlice';
 import { useNavigate } from 'react-router-dom';
-import { deletePost } from "@/features/postsSlice";
+import { deletePost } from "@/features/posts/postsSlice";
 type BlogsProps = Pick<PostsState, 'posts' | 'loading' | 'error'>;
 import { useAppDispatch } from "@/app/store";
 import { useParams } from "react-router-dom";
@@ -25,7 +25,7 @@ const Blogs = ({posts, loading, error}: BlogsProps) => {
                         <div className='flex flex-row justify-between w-full'>
                             <div className="flex items-center">
                                 <Link className='nav-link hover:text-blue-500' to={`/post/${blog.post_id}`}>
-                                    <h3>
+                                    <h3 className='text-xl md:text-lg'>
                                         {blog.title}
                                     </h3>
                                 </Link>

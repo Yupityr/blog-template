@@ -9,23 +9,19 @@ import Landingpage from "@/pages/Landingpage";
 import Viewpost from "@/pages/Viewpost";
 import Updatepost from "@/pages/Updatepost";
 import Userposts from "@/pages/Userposts";
-import Privateroute from "@/pages/auth/Privateroute";
+// import Privateroute from "@/pages/auth/Privateroute";
 
 export const router = createBrowserRouter([
     {
         path: "/", 
         element: <Layout/>,
         children: [
-            {path: "/", element: <Landingpage/>},
+            {index: true, element: <Landingpage/>},
             {path: "/signup", element: <Signup/>},
             {path: "/signin", element: <Signin/>},
             {
-                path: "/", 
-                element: (
-                <Privateroute>
-                    <Authprotectedroute/>
-                </Privateroute>
-            ),
+                path: "", 
+                element:<Authprotectedroute />,
                 children: [
                     {
                         path: "/home", 

@@ -1,5 +1,5 @@
 import { useAppDispatch,useAppSelector } from '@/app/store'
-import { fetchPosts, setPage } from '@/features/postsSlice'
+import { fetchPosts, setPage } from '@/features/posts/postsSlice'
 import { useEffect } from "react";
 import Blogs from './Blogs';
 // import { Link } from 'react-router-dom';
