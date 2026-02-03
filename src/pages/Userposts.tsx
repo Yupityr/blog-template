@@ -4,7 +4,7 @@ import { useAppSelector,useAppDispatch } from "@/app/store";
 import { useEffect } from "react";
 import { setPage,fetchPostsByUserId } from "@/features/posts/postsSlice";
 import { useNavigate } from "react-router-dom";
-import Blogs from "../components/Blogs";
+import Blogs from "../components/common/Blogs";
 
 
 
