@@ -3,12 +3,13 @@ import Signup from "../pages/auth/Singup";
 import Signin from "../pages/auth/Signin";
 import Homepage from "../pages/Homepage";
 import Createpost from "@/pages/Createpost";
-import Layout from "@/pages/Layout";
+import Layout from "@/layouts/Layout";
 import Authprotectedroute from "./Authprotectedroute";
 import Landingpage from "@/pages/Landingpage";
 import Viewpost from "@/pages/Viewpost";
 import Updatepost from "@/pages/Updatepost";
 import Userposts from "@/pages/Userposts";
+import Authlayout from "@/layouts/Authlayout";
 // import Privateroute from "@/pages/auth/Privateroute";
 
 export const router = createBrowserRouter([
@@ -17,8 +18,6 @@ export const router = createBrowserRouter([
         element: <Layout/>,
         children: [
             {index: true, element: <Landingpage/>},
-            {path: "/signup", element: <Signup/>},
-            {path: "/signin", element: <Signin/>},
             {
                 path: "", 
                 element:<Authprotectedroute />,
@@ -47,6 +46,13 @@ export const router = createBrowserRouter([
             },
             
         ]    
+    },
+    {
+        element: <Authlayout />,
+        children: [
+            {path: "/signup", element: <Signup/>},
+            {path: "/signin", element: <Signin/>}
+        ]
     },
     {path: "*", element: <div>404 Not Found</div>},
     

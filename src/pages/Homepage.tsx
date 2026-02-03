@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import { supabase } from "@/services/supabaseClient";
 import { useSession } from "@/context/AuthContext";
-import Blogcard from "./components/Blogcard";
+import Blogcard from "../components/Blogcard";
 
 
 const Homepage = () => {

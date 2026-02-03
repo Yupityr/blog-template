@@ -1,11 +1,10 @@
-import Signin from './pages/auth/Signin'
-// import { AuthContextProvider } from './context/AuthContext'
-
+import { RouterProvider } from 'react-router-dom'
+import { router } from './router/router.tsx'
 function App() {
 
   return (
     <>
-      < Signin />
+      <RouterProvider router={router} />
     </>
   )
 }
