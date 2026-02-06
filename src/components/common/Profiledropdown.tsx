@@ -2,7 +2,7 @@ import { supabase } from "@/services/supabaseClient";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const ProfileDropdown = ({session}) => {
+const ProfileDropdown = ({session}: any) => {
     const [open, setOpen] = useState(false);
     const navigate = useNavigate();   
     const toggleDropdown = () => {
@@ -20,16 +20,16 @@ const ProfileDropdown = ({session}) => {
   }
     return (
         <div>
-            <button
+            <div
             onClick={toggleDropdown}
-            className="flex items-center space-x-2 rounded-full bg-gray-200 p-2 hover:bg-gray-300 focus:outline-none"
+            className="flex items-center space-x-2 rounded-full p-2 hover:bg-gray-300 focus:outline-none"
             >
                 <img
-                    src="https://via.placeholder.com/32"
+                    src="https://wxlokatxrwhwpyvgcpre.supabase.co/storage/v1/object/public/blogBucket/output-onlinepngtools.png"
                     alt="Profile"
                     className="h-9 w-9 rounded-full border"
                 />
-            </button>
+            </div>
         {open && 
             <div className="relative">
                     <div className="absolute right-0 mt-2 w-52 overflow-hidden rounded-xl border border-gray-200 bg-white shadow-lg">

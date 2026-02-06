@@ -21,7 +21,7 @@ const Blogs = ({posts, loading, error}: BlogsProps) => {
             {!loading && !error && 
             <div className='flex flex-col w-full max-w-lg px-5 min-h-[60vh] mx-auto'>
                 {posts?.map(blog => (
-                    <div className='flex flex-row border border-gray-200 rounded-lg p-6 shadow-sm my-5' key={blog.post_id}>
+                    <div className='flex flex-row border border-gray-200 rounded-lg p-6 shadow-sm my-3' key={blog.post_id}>
                         <div className='flex flex-row justify-between w-full'>
                             <div className="flex items-center">
                                 <Link className='nav-link hover:text-blue-500' to={`/post/${blog.post_id}`}>
