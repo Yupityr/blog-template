@@ -1,6 +1,6 @@
 import { supabase } from "@/services/supabaseClient";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const ProfileDropdown = ({session}: any) => {
     const [open, setOpen] = useState(false);
@@ -44,13 +44,9 @@ const ProfileDropdown = ({session}: any) => {
 
                 {/* Menu Items */}
                     <div className="py-2">
-                        <a
-                        href={`/post/user/${session?.user.id}`}
-                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                        >
+                        <Link to={`/user/${session?.user.id}`} className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" >
                         Profile
-                        </a>
-
+                        </Link>
                         {/* <a
                         href="/settings"
                         className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"

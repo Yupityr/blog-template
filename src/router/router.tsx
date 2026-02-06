@@ -31,7 +31,7 @@ export const router = createBrowserRouter([
                         element: <Createpost/>
                     },
                     {
-                        path: "/post/user/:userId", 
+                        path: "/user/:userId", 
                         element: <Userposts/>
                     },
                     {
