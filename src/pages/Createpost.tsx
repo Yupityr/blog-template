@@ -33,8 +33,8 @@ const Createpost = () => {
 
     return (
         <>
-            <div className="flex justify-between my-2 mx-4 ">
-                <input id="title" className="text-3xl " type="text" placeholder="Insert Title" onChange={(e) => setTitle(e.target.value)}/>
+            <div className="flex justify-between my-2 mx-4 gap-5">
+                <input id="title" className="text-3xl w-full" type="text" placeholder="Insert Title" onChange={(e) => setTitle(e.target.value)}/>
                 <button disabled={!title} onClick={handleSubmit}>
                     Post
                 </button>

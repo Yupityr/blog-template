@@ -22,7 +22,7 @@ const ProfileDropdown = ({session}: any) => {
         <div>
             <div
             onClick={toggleDropdown}
-            className="flex items-center space-x-2 rounded-full p-2 hover:bg-gray-300 focus:outline-none"
+            className="flex items-center space-x-2 rounded-full p-1 hover:bg-gray-300 focus:outline-none"
             >
                 <img
                     src="https://wxlokatxrwhwpyvgcpre.supabase.co/storage/v1/object/public/blogBucket/output-onlinepngtools.png"
@@ -44,7 +44,7 @@ const ProfileDropdown = ({session}: any) => {
 
                 {/* Menu Items */}
                     <div className="py-2">
-                        <Link to={`/user/${session?.user.id}`} className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" >
+                        <Link to={`/user/${session?.user.id}`} onClick={toggleDropdown} className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" >
                         Profile
                         </Link>
                         {/* <a
