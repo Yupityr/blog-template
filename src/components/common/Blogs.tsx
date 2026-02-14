@@ -5,6 +5,7 @@ import { deletePost } from "@/features/posts/postsSlice";
 type BlogsProps = Pick<PostsState, 'posts' | 'loading' | 'error'>;
 import { useAppDispatch } from "@/app/store";
 import { useParams } from "react-router-dom";
+import Loader from './Loader';
 
 const Blogs = ({posts, loading, error}: BlogsProps) => {
 
@@ -15,7 +16,7 @@ const Blogs = ({posts, loading, error}: BlogsProps) => {
 
     return (
         <>
-            {loading && <p className="text-center">Loading...</p> }
+            {loading && <Loader /> }
             {posts.length === 0 && !loading && !error && <p className="text-center">No posts found.</p>}
             {error && <div className="text-center text-red-500"> <p>Eror Occurred</p> <p>Redirecting back to homepage</p></div>}
             {!loading && !error && 
