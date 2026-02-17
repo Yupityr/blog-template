@@ -22,7 +22,7 @@ const Blogcard = () => {
         <> 
             <div className='flex flex-col w-full max-w-lg px-5 min-h-[60vh] mx-auto'>
                 <Blogs posts={posts} loading={loading} error={error} />
-                <div className='flex flex-row justify-center my-4 mt-auto'>
+                <div className='flex flex-row justify-center my-4 mt-auto '>
                     <button disabled={currentPage === 1} onClick={() => dispatch(setPage(currentPage - 1))}>
                         Prev
                     </button>

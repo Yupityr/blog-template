@@ -3,7 +3,7 @@ import { SimpleEditor } from "@/components/tiptap-templates/simple/simple-editor
 import { Editor } from "@tiptap/react"
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
-
+import Loader from "@/components/common/Loader"
 // imports for accessing store
 import { useAppDispatch } from '@/app/store'
 import { createPost } from '@/features/posts/postsSlice'
@@ -14,18 +14,18 @@ const Createpost = () => {
 
     const [title, setTitle] = useState('')
     const [body,setBody] = useState<Editor | null>(null)
-    const [status,setStatus] = useState('')
+    const [status,setStatus] = useState(false)
     const navigate = useNavigate()
 
     const handleSubmit = async () => {
+        setStatus(true)
         await dispatch(
             createPost({
                 title,body:body?.getJSON()
             })
         )
-        setStatus('Post created successfully!')
         setTimeout(() => {
-            setStatus('')
+            setStatus(false)
             navigate('/home')
         }, 1000);
     }
@@ -40,7 +40,14 @@ const Createpost = () => {
                 </button>
             </div>
             <SimpleEditor onEditorReady={setBody} />
-            {status && <p className="text-center text-green-500">{status}</p>}
+            {status && 
+                (<div className="fixed inset-0 z-50 flex items-center justify-center bg-black/30 backdrop-blur-sm">
+                    <div>
+                        <Loader />
+                        Uploading Post...
+                    </div>
+                </div>
+            )}
         </>
     );
 }
