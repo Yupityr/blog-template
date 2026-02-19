@@ -1,6 +1,7 @@
 import { createContext, useEffect, useState, useContext } from "react";
 import { supabase } from "@/services/supabaseClient";
 import type { Session } from "@supabase/supabase-js";
+import Loader from "@/components/common/Loader";
 
 
 const AuthContext = createContext<{session: Session | null;}>({ session: null });
@@ -34,7 +35,7 @@ export const AuthContextProvider = ({ children }: Props) => {
 
     return (
         <AuthContext.Provider value={{ session }}>
-        {loading ? <div>The page is Loading</div> : children}
+        {loading ? <Loader /> : children}
         </AuthContext.Provider>
     );
 }
