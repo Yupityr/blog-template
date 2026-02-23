@@ -7,6 +7,7 @@ import Loader from "@/components/common/Loader"
 // imports for accessing store
 import { useAppDispatch } from '@/app/store'
 import { createPost } from '@/features/posts/postsSlice'
+import CreatePostHeader from "@/components/common/Createpostheader"
 
 
 const Createpost = () => {
@@ -17,7 +18,7 @@ const Createpost = () => {
     const [status,setStatus] = useState(false)
     const navigate = useNavigate()
 
-    const handleSubmit = async () => {
+    const handlePost = async () => {
         setStatus(true)
         await dispatch(
             createPost({
@@ -30,14 +31,26 @@ const Createpost = () => {
         }, 1000);
     }
 
+    // to be  added
+    // const handleSave = async () => {
+    //     setStatus(true)
+    //     await dispatch(
+    //         createPost({
+    //             title,body:body?.getJSON()
+    //         })
+    //     )
+    //     setTimeout(() => {
+    //         setStatus(false)
+    //         navigate('/home')
+    //     }, 1000);
+    // }
+
 
     return (
         <>
+            <CreatePostHeader onPost={handlePost} disabled={!title}/>
             <div className="flex justify-between my-2 mx-4 gap-5">
                 <input id="title" className="text-3xl w-full" type="text" placeholder="Insert Title" onChange={(e) => setTitle(e.target.value)}/>
-                <button disabled={!title} onClick={handleSubmit}>
-                    Post
-                </button>
             </div>
             <SimpleEditor onEditorReady={setBody} />
             {status && 

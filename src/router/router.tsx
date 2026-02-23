@@ -10,7 +10,6 @@ import Viewpost from "@/pages/Viewpost";
 import Updatepost from "@/pages/Updatepost";
 import Userposts from "@/pages/Userposts";
 import Authlayout from "@/layouts/Authlayout";
-// import Privateroute from "@/pages/auth/Privateroute";
 
 export const router = createBrowserRouter([
     {
@@ -25,10 +24,6 @@ export const router = createBrowserRouter([
                     {
                         path: "/home", 
                         element: <Homepage />
-                    },
-                    {
-                        path: "/create-blog", 
-                        element: <Createpost/>
                     },
                     {
                         path: "/user/:userId", 
@@ -46,6 +41,16 @@ export const router = createBrowserRouter([
             },
             
         ]    
+    },
+    {
+        path: "/",
+        children: [
+            {
+                path: "/create-blog", 
+                element: <Createpost/>
+            }
+        ]
+
     },
     {
         element: <Authlayout />,
