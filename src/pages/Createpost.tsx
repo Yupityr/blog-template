@@ -8,7 +8,7 @@ import Loader from "@/components/common/Loader"
 import { useAppDispatch } from '@/app/store'
 import { createPost } from '@/features/posts/postsSlice'
 import CreatePostHeader from "@/components/common/Createpostheader"
-
+import { saveDraft } from "@/features/posts/postsSlice"
 
 const Createpost = () => {
     const dispatch = useAppDispatch()
@@ -31,24 +31,23 @@ const Createpost = () => {
         }, 1000);
     }
 
-    // to be  added
-    // const handleSave = async () => {
-    //     setStatus(true)
-    //     await dispatch(
-    //         createPost({
-    //             title,body:body?.getJSON()
-    //         })
-    //     )
-    //     setTimeout(() => {
-    //         setStatus(false)
-    //         navigate('/home')
-    //     }, 1000);
-    // }
+    const handleSave = async () => {
+        setStatus(true)
+        await dispatch(
+            saveDraft({
+                title,body:body?.getJSON()
+            })
+        )
+        setTimeout(() => {
+            setStatus(false)
+            navigate('/home')
+        }, 1000);
+    }
 
 
     return (
         <>
-            <CreatePostHeader onPost={handlePost} disabled={!title}/>
+            <CreatePostHeader onPost={handlePost} onSave={handleSave} disabled={!title}/>
             <div className="flex justify-between my-2 mx-4 gap-5">
                 <input id="title" className="text-3xl w-full" type="text" placeholder="Insert Title" onChange={(e) => setTitle(e.target.value)}/>
             </div>
