@@ -69,19 +69,19 @@ button:focus-visible {
 }
 @media (prefers-color-scheme: dark) {
   #root {
-    color: #ffffff;
+    color: #e6e6e6;
   }
   a:hover {
     color: #747bff;
   }
   button {
     background-color: #000000;
-    color: white;
+    color: #e6e6e6;
   }
   .temp-logo {
-    color:white;
+    color:#e6e6e6;
   }.nav-link {
-    color: white;
+    color: #e6e6e6;
     text-decoration: none;
   }
 }
